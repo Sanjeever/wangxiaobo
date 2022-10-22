@@ -149,6 +149,7 @@ input {
 }
 
 button {
+  border: 1px solid gray;
   border-radius: 10px;
   background: #726c5f;
   color: white;
@@ -163,6 +164,7 @@ button:hover {
 textarea {
   border-radius: 10px;
   border: 1px solid gray;
+  margin-bottom: 10px;
 }
 
 .deleteButton {
