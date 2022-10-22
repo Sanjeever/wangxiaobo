@@ -1,0 +1,29 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "target": "es2017",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "allowJs": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noImplicitThis": true,
+    "vueCompilerOptions": {
+      "experimentalDisableTemplateSupport": true
+    },
+    "exclude": ["dist", "node_modules"]
+  },
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ],
+  "type": ["node"]
+}

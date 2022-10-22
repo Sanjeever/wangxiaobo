@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="progress"></div>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+  <script>
+    const progress = document.querySelector(".progress");
+    const totalScrollHeight =
+      document.body.scrollHeight - document.documentElement.clientHeight;
+
+    window.onscroll = function () {
+      const hasScrollHeight =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const progressWidth = (hasScrollHeight / totalScrollHeight) * 100;
+      progress.style.width = progressWidth + "%";
+    };
+  </script>
+</html>

@@ -1,0 +1,106 @@
+/* @import "./base.css";
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+} */
+:is(:not(i):not(.fa):not([class*="icon"]):not([class*="vjs-"]):not([class*="mu-"])) {
+  font-family: "Microsoft YaHei", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif, "iconfont", "icomoon", "FontAwesome", "IcoFont",
+    "Material Icons Extended", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji", "Android Emoji", EmojiSymbols,
+    "emojione mozilla", "twemoji mozilla";
+  -webkit-text-stroke: 0.02px currentcolor;
+  font-feature-settings: "liga" 0;
+  font-variant: no-common-ligatures proportional-nums;
+  font-optical-sizing: auto;
+  font-kerning: auto;
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+hr {
+  display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}
+
+p {
+  text-align: justify;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-bottom: 4%;
+}
+
+a:link,
+a:visited {
+  color: #666666;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #666666;
+  text-decoration: none;
+}
+
+hr {
+  display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}
+
+#nprogress .bar {
+  background: linear-gradient(
+    90deg,
+    rgba(135, 126, 108, 1) 0%,
+    rgba(143, 131, 106, 1) 0%,
+    rgba(114, 108, 95, 1) 100%
+  ) !important;
+  /*
+    background 使用 https://cssgradient.io/ 生成
+    */
+  height: 8px !important;
+}

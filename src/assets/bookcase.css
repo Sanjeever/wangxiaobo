@@ -1,0 +1,42 @@
+img {
+  width: 125px;
+  height: 166px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+.book-inner {
+  display: inline-block;
+}
+
+.book-inner .book-name {
+  margin: 4px 0 0 0;
+  text-align: center;
+}
+
+.book-inner .book-name a:link,
+.book-inner .book-name a:visited {
+  color: #32a998;
+  background-color: #f6f6f2;
+  border-radius: 5px;
+  padding: 3px 8px 3px 8px;
+  text-decoration: none;
+}
+
+.book-inner .book-name a:hover {
+  color: #fff;
+  background-color: #59b8aa;
+  border-radius: 5px;
+  padding: 3px 8px 3px 8px;
+  text-decoration: none;
+}
+
+.vertical-separation-l {
+  display: inline-block;
+  margin-left: 60%;
+}
+
+.vertical-separation-m {
+  display: inline-block;
+  margin-left: 19%;
+}
