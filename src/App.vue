@@ -1,8 +1,4 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import { ref } from "vue";
-import MyTransition from "./components/MyTransition.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
