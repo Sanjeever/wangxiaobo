@@ -117,7 +117,7 @@ export default defineComponent({
     },
     cleanStorageState() {
       window.localStorage.removeItem("messageList");
-      location.reload();
+      this.$router.go(0);
     },
   },
 });
