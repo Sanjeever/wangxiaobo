@@ -40,7 +40,7 @@ export default {
 
 <style>
 #banner {
-  height: 100px;
+  height: auto;
   padding-bottom: 0px;
 }
 
