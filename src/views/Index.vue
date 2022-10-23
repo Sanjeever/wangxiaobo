@@ -26,7 +26,7 @@
         [<router-link to="/app/contact">联系方式</router-link>]
         [<router-link to="/app/about">关于本站</router-link>]
         [<router-link to="/app/message-board">留言板</router-link>]
-        [<a href="https://wangxiaobo-chinese-site-introduce.vercel.app/" target="_blank">一些介绍</a>]
+        [<a href="https://wxb-site-intro.sakuras.cyou/" target="_blank">一些介绍</a>]
         [<a href="https://www.sakuras.cyou/" target="_blank">作者的 Blog</a>]
       </p>
       <hr style="margin-bottom: 40px" />
