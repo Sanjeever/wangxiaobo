@@ -22,6 +22,7 @@
           cols="20"
           rows="5"
           v-model="messageForm.content"
+          @keyup.enter="addMessage"
         ></textarea>
         <button type="submit">留言</button>
       </form>
