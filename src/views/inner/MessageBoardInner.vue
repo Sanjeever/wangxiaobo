@@ -9,7 +9,7 @@
         <p><label for="username">用户名</label></p>
         <input
           placeholder="Your name will keep anonymous"
-          autocomplete="no"
+          autocomplete="off"
           type="text"
           id="username"
           v-model="messageForm.username"
@@ -17,6 +17,7 @@
         <p><label for="content">内容</label></p>
         <textarea
           placeholder="Speak out freely..."
+          autocomplete="off"
           id="content"
           cols="20"
           rows="5"
@@ -38,7 +39,7 @@
           >
         </p>
         <p>{{ message.username }} 在 {{ message.createTime }} 时说：</p>
-        <p v-html="message.content"></p>
+        <p class="messageContent" v-html="message.content"></p>
       </div>
     </NormalContent>
   </div>
@@ -169,5 +170,11 @@ textarea {
 
 .deleteButton {
   float: right;
+}
+
+.messageContent {
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
 }
 </style>
