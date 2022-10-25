@@ -3,7 +3,7 @@
     <OuterFrame>
       <router-view v-slot="{ Component }">
         <transition name="component-fade" mode="out-in">
-          <keep-alive>
+          <keep-alive exclude="NotFound">
             <component :is="Component" />
           </keep-alive>
         </transition>
@@ -22,7 +22,7 @@
         &amp;
         <br />
         [<router-link to="/app/search">图书搜索</router-link>]
-        [<router-link to="/" class="rss_link"></router-link>]
+        [<router-link to="/app/rss" class="rss_link"></router-link>]
         [<router-link to="/app/contact">联系方式</router-link>]
         [<router-link to="/app/about">关于本站</router-link>]
         [<router-link to="/app/message-board">留言板</router-link>]
