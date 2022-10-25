@@ -3,6 +3,7 @@ import {
   createWebHashHistory,
   createWebHistory,
   type RouteLocationNormalized,
+  type RouteRecordName,
 } from "vue-router";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
@@ -10,10 +11,12 @@ import "nprogress/nprogress.css";
 const routes = [
   {
     path: "/",
+    name: "/",
     redirect: "/app/index",
   },
   {
     path: "/index",
+    name: "index",
     redirect: "/app/index",
   },
   {
@@ -24,10 +27,11 @@ const routes = [
     children: [
       {
         path: "index",
+        name: "app/index",
         component: () => import("../views/inner/IndexInner.vue"),
         meta: {
           title: "王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
       },
       {
@@ -36,7 +40,7 @@ const routes = [
         component: () => import("../components/Content.vue"),
         meta: {
           title: "生平事迹 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {
@@ -51,7 +55,7 @@ const routes = [
         component: () => import("../views/inner/InterviewVideoInner.vue"),
         meta: {
           title: "采访视频 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {};
@@ -63,7 +67,7 @@ const routes = [
         component: () => import("../views/inner/StoriesInner.vue"),
         meta: {
           title: "短篇小说 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {};
@@ -75,7 +79,7 @@ const routes = [
         component: () => import("../views/inner/NovelInner.vue"),
         meta: {
           title: "长篇小说 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {};
@@ -87,7 +91,7 @@ const routes = [
         component: () => import("../views/inner/NonfictionInner.vue"),
         meta: {
           title: "非小说作品 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {};
@@ -99,7 +103,7 @@ const routes = [
         component: () => import("../views/inner/SearchInner.vue"),
         meta: {
           title: "图书搜索 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {};
@@ -111,7 +115,7 @@ const routes = [
         component: () => import("../components/Content.vue"),
         meta: {
           title: "相关评论 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {
@@ -126,7 +130,7 @@ const routes = [
         component: () => import("../components/Content.vue"),
         meta: {
           title: "王小波和编程 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {
@@ -141,7 +145,7 @@ const routes = [
         component: () => import("../components/Content.vue"),
         meta: {
           title: "联系方式 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {
@@ -156,22 +160,7 @@ const routes = [
         component: () => import("../components/Content.vue"),
         meta: {
           title: "关于本站 - 王小波中文站",
-          keepAlive: false,
-        },
-        props: () => {
-          return {
-            pageName: "关于本站",
-            source: "About",
-          };
-        },
-      },
-      {
-        path: "about",
-        name: "about",
-        component: () => import("../components/Content.vue"),
-        meta: {
-          title: "关于本站 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {
@@ -186,10 +175,19 @@ const routes = [
         component: () => import("../views/inner/MessageBoardInner.vue"),
         meta: {
           title: "留言板 - 王小波中文站",
-          keepAlive: false,
+          keepAlive: true,
         },
         props: () => {
           return {};
+        },
+      },
+      {
+        path: "404",
+        name: "404",
+        component: () => import("../views/inner/NotFound.vue"),
+        meta: {
+          title: "未知页 - 王小波中文站",
+          keepAlive: false,
         },
       },
     ],
@@ -206,9 +204,12 @@ NProgress.configure({ ease: "ease", speed: 500 });
 router.beforeEach(
   (to: RouteLocationNormalized, from: RouteLocationNormalized, next: any) => {
     const paths = router.getRoutes().map((item) => item.path);
-    if (!paths.includes(to.fullPath)) {
+    if (
+      !paths.includes(to.fullPath) ||
+      !router.hasRoute(to.name as RouteRecordName)
+    ) {
       console.log(`${to.fullPath} 在 ${paths} 中不存在`);
-      router.push("/app");
+      router.push("/app/404");
     }
 
     if (to.meta.title) {
