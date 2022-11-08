@@ -13,6 +13,10 @@
   text-rendering: optimizeLegibility !important;
 }
 
+body {
+  margin: 0;
+}
+
 hr {
   display: block;
   unicode-bidi: isolate;
