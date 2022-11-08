@@ -63,8 +63,8 @@ export default defineComponent({
     });
   },
   watch: {
-    time: function (newVal) {
-      if (newVal === 0) {
+    time: function (it) {
+      if (it === 0) {
         document.body.removeChild(document.querySelectorAll("canvas")[0]);
         this.$router.push("/app/index");
       }
