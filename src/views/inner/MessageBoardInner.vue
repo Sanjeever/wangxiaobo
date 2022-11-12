@@ -102,6 +102,8 @@ export default defineComponent({
         return;
       }
       this.messageForm.id = this.messageList.length + 1;
+      this.messageForm.username = this.messageForm.username.trim();
+      this.messageForm.content = this.messageForm.content.trim();
       this.messageForm.createTime = moment().format(
         "YYYY 年 M 月 D 日 H:mm:ss"
       );
