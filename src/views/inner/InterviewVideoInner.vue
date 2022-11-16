@@ -14,6 +14,7 @@
 
       <iframe
         src="//player.bilibili.com/player.html?aid=92125428&bvid=BV1u7411N77f&cid=157302658&page=1"
+        title="王小波生前采访视频"
         scrolling="no"
         border="0"
         frameborder="no"
