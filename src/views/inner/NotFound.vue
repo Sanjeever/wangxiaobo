@@ -13,63 +13,56 @@
   </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-  name: "NotFound",
-  data() {
-    return {
-      pageName: "未知页",
-      time: 5,
-    };
-  },
-  mounted() {
-    setInterval(() => {
-      this.time--;
-    }, 1000);
-    const canvas = document.createElement("canvas");
-    canvas.style.cssText = `
+<script setup lang="ts">
+const pageName = "未知页";
+let time = ref(5);
+const router = useRouter();
+onMounted(() => {
+  setInterval(() => {
+    time.value--;
+  }, 1000);
+  const canvas = document.createElement("canvas");
+  canvas.style.cssText = `
         position: fixed;
         left: 0;
         top: 0;
         z-index: 9999;
         pointer-events: none;
     `;
-    document.body.appendChild(canvas);
-    const context = canvas.getContext("2d") as CanvasRenderingContext2D;
-    canvas.width = document.documentElement.clientWidth;
-    canvas.height = document.documentElement.clientHeight;
-    const p = { x: 0, y: 0, r: 50 };
-    const render = () => {
-      context.beginPath();
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      const radial = context.createRadialGradient(
-        p.x,
-        p.y,
-        p.r,
-        p.x,
-        p.y,
-        p.r * 3
-      );
-      radial.addColorStop(0, "rgba(255,255,255,0)");
-      radial.addColorStop(1, "rgba(0,0,0,0.5)");
-      context.fillStyle = radial;
-      context.fillRect(0, 0, canvas.width, canvas.height);
-    };
+  document.body.appendChild(canvas);
+  const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+  canvas.width = document.documentElement.clientWidth;
+  canvas.height = document.documentElement.clientHeight;
+  const p = { x: 0, y: 0, r: 50 };
+  const render = () => {
+    context.beginPath();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    const radial = context.createRadialGradient(
+      p.x,
+      p.y,
+      p.r,
+      p.x,
+      p.y,
+      p.r * 3
+    );
+    radial.addColorStop(0, "rgba(255,255,255,0)");
+    radial.addColorStop(1, "rgba(0,0,0,0.5)");
+    context.fillStyle = radial;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  };
+  render();
+  document.addEventListener("mousemove", (event) => {
+    p.x = event.clientX;
+    p.y = event.clientY;
     render();
-    document.addEventListener("mousemove", (event) => {
-      p.x = event.clientX;
-      p.y = event.clientY;
-      render();
-    });
-  },
-  watch: {
-    time: function (it) {
-      if (it === 0) {
-        document.body.removeChild(document.querySelectorAll("canvas")[0]);
-        this.$router.push("/app/index");
-      }
-    },
-  },
+  });
+});
+
+watch(time, (newTime) => {
+  if (newTime === 0) {
+    document.body.removeChild(document.querySelectorAll("canvas")[0]);
+    router.push("/app/index");
+  }
 });
 </script>
 

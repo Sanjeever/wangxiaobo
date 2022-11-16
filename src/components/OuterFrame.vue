@@ -30,14 +30,6 @@
   </div>
 </template>
 
-<script>
-import MyTransition from "./MyTransition.vue";
-export default {
-  name: "OuterFrame",
-  components: { MyTransition },
-};
-</script>
-
 <style>
 #banner {
   height: auto;

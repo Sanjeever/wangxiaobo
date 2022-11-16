@@ -34,21 +34,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import OuterFrame from "../components/OuterFrame.vue";
-import IndexInner from "./inner/IndexInner.vue";
-
-export default defineComponent({
-  components: { OuterFrame, IndexInner },
-  data() {
-    return {};
-  },
-  computed: {},
-  mounted() {},
-});
-</script>
-
 <style scoped>
 .rss_link::after{
   content:'RSS 订阅';

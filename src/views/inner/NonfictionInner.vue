@@ -97,17 +97,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import NormalContent from "../../components/NormalContent.vue";
-export default defineComponent({
-  components: { NormalContent },
-  data() {
-    return {
-      pageName: "非小说作品",
-    };
-  },
-  mounted() {},
-});
+<script setup lang="ts">
+const pageName = "非小说作品";
 </script>
 
 <style scoped>

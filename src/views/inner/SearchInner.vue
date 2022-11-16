@@ -25,35 +25,26 @@
   </div>
 </template>
 
-<script lang="ts">
-import NormalContent from "../../components/NormalContent.vue";
-export default defineComponent({
-  components: { NormalContent },
-  data() {
-    return {
-      pageName: "图书搜索",
-      keyword: "王小波",
-      isOnce: true,
-    };
-  },
-  mounted() {},
-  methods: {
-    focus() {
-      if (this.isOnce) {
-        this.keyword = "";
-        this.isOnce = false;
-      }
-    },
-    toSearch() {
-      if (this.keyword === "") {
-        return;
-      } else {
-        const url = `https://search.douban.com/book/subject_search?search_text=${this.keyword}`;
-        window.open(url);
-      }
-    },
-  },
-});
+<script setup lang="ts">
+const pageName = ref("图书搜索");
+const keyword = ref("王小波");
+const isOnce = ref(true);
+
+function focus() {
+  if (isOnce) {
+    keyword.value = "";
+    isOnce.value = false;
+  }
+}
+
+function toSearch() {
+  if (keyword.value === "") {
+    return;
+  } else {
+    const url = `https://search.douban.com/book/subject_search?search_text=${keyword.value}`;
+    window.open(url);
+  }
+}
 </script>
 
 <style scoped>

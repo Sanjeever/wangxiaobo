@@ -7,18 +7,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  props: {
-    pageName: String,
-    source: String,
-  },
-  mounted() {
-    this.pageName;
-    this.source;
-  },
+<script setup lang="ts">
+defineProps({
+  pageName: { type: String, required: true },
+  source: { type: String, required: true },
 });
 </script>
 

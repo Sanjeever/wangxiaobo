@@ -11,10 +11,6 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
 #alpha-inner img {
   width: 125px;

@@ -46,85 +46,71 @@
   </div>
 </template>
 
-<script lang="ts">
-import NormalContent from "../../components/NormalContent.vue";
+<script setup lang="ts">
 import moment from "moment";
-const initialMessageForm = {
+const router = useRouter();
+const pageName = "留言板";
+const messageList = ref([
+  {
+    id: 1,
+    username: "Sanjeev",
+    content:
+      "希望大家开心 😏 <br/> emoji : <a href='https://gist.github.com/rxaviers/7360908' target='_blank'>Complete list of github markdown emoji markup</a>",
+    createTime: "2022 年 10 月 22 日 16:04:45",
+    isShow: true,
+  },
+]);
+const filteredMessageList = computed(() => {
+  return messageList.value.filter((item) => item.isShow);
+});
+
+const messageForm = ref({
+  id: -1,
   username: "",
   content: "",
-  createTime: moment().format("YYYY 年 M 月 D 日 H:mm:ss"),
-};
-export default defineComponent({
-  components: { NormalContent },
-  created() {
-    const messageListJson = window.localStorage.getItem("messageList");
-    if (messageListJson) {
-      this.messageList = JSON.parse(messageListJson);
-    }
-  },
-  data() {
-    return {
-      pageName: "留言板",
-      messageList: [
-        {
-          id: 1,
-          username: "Sanjeev",
-          content:
-            "希望大家开心 😏 <br/> emoji : <a href='https://gist.github.com/rxaviers/7360908' target='_blank'>Complete list of github markdown emoji markup</a>",
-          createTime: "2022 年 10 月 22 日 16:04:45",
-          isShow: true,
-        },
-      ],
-      messageForm: {
-        id: -1,
-        username: "",
-        content: "",
-        createTime: "",
-        isShow: true,
-      },
-      nextID: 0,
-    };
-  },
-  computed: {
-    filteredMessageList() {
-      return this.messageList.filter((item) => item.isShow);
-    },
-  },
-  methods: {
-    updateStorageState() {
-      window.localStorage.setItem(
-        "messageList",
-        JSON.stringify(this.messageList)
-      );
-    },
-    addMessage() {
-      if (this.messageForm.username === "" || this.messageForm.content === "") {
-        return;
-      }
-      this.messageForm.id = this.messageList.length + 1;
-      this.messageForm.username = this.messageForm.username.trim();
-      this.messageForm.content = this.messageForm.content.trim();
-      this.messageForm.createTime = moment().format(
-        "YYYY 年 M 月 D 日 H:mm:ss"
-      );
-      this.messageList.unshift({ ...this.messageForm });
-      this.messageForm.content = "";
-      this.updateStorageState();
-    },
-    deleteMessage(id: number) {
-      for (let i = 0; i < this.messageList.length; i++) {
-        if (this.messageList[i].id === id) {
-          this.messageList[i].isShow = false;
-        }
-      }
-      this.updateStorageState();
-    },
-    cleanStorageState() {
-      window.localStorage.removeItem("messageList");
-      this.$router.go(0);
-    },
-  },
+  createTime: "",
+  isShow: true,
 });
+
+onBeforeMount(() => {
+  const messageListJson = window.localStorage.getItem("messageList");
+  console.log(messageListJson);
+  if (messageListJson) {
+    messageList.value = JSON.parse(messageListJson);
+  }
+  console.log(messageList);
+});
+
+function updateStorageState() {
+  window.localStorage.setItem("messageList", JSON.stringify(messageList.value));
+}
+
+function addMessage() {
+  if (messageForm.value.username === "" || messageForm.value.content === "") {
+    return;
+  }
+  messageForm.value.id = messageList.value.length + 1;
+  messageForm.value.username = messageForm.value.username.trim();
+  messageForm.value.content = messageForm.value.content.trim();
+  messageForm.value.createTime = moment().format("YYYY 年 M 月 D 日 H:mm:ss");
+  messageList.value.unshift({ ...messageForm.value });
+  messageForm.value.content = "";
+  updateStorageState();
+}
+
+function deleteMessage(id: number) {
+  for (let i = 0; i < messageList.value.length; i++) {
+    if (messageList.value[i].id === id) {
+      messageList.value[i].isShow = false;
+    }
+  }
+  updateStorageState();
+}
+
+function cleanStorageState() {
+  window.localStorage.removeItem("messageList");
+  router.go(0);
+}
 </script>
 
 <style scoped>
