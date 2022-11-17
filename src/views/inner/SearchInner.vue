@@ -26,22 +26,22 @@
 </template>
 
 <script setup lang="ts">
-const pageName = ref("图书搜索");
-const keyword = ref("王小波");
-const isOnce = ref(true);
+const pageName = "图书搜索";
+let keyword = $ref("王小波");
+let isOnce = true;
 
 function focus() {
   if (isOnce) {
-    keyword.value = "";
-    isOnce.value = false;
+    keyword = "";
+    isOnce = false;
   }
 }
 
 function toSearch() {
-  if (keyword.value === "") {
+  if (keyword === "") {
     return;
   } else {
-    const url = `https://search.douban.com/book/subject_search?search_text=${keyword.value}`;
+    const url = `https://search.douban.com/book/subject_search?search_text=${keyword}`;
     window.open(url);
   }
 }

@@ -50,7 +50,7 @@
 import moment from "moment";
 const router = useRouter();
 const pageName = "留言板";
-const messageList = ref([
+let messageList = $ref([
   {
     id: 1,
     username: "Sanjeev",
@@ -61,10 +61,10 @@ const messageList = ref([
   },
 ]);
 const filteredMessageList = computed(() => {
-  return messageList.value.filter((item) => item.isShow);
+  return messageList.filter((item) => item.isShow);
 });
 
-const messageForm = ref({
+const messageForm = $ref({
   id: -1,
   username: "",
   content: "",
@@ -76,32 +76,32 @@ onBeforeMount(() => {
   const messageListJson = window.localStorage.getItem("messageList");
   console.log(messageListJson);
   if (messageListJson) {
-    messageList.value = JSON.parse(messageListJson);
+    messageList = JSON.parse(messageListJson);
   }
   console.log(messageList);
 });
 
 function updateStorageState() {
-  window.localStorage.setItem("messageList", JSON.stringify(messageList.value));
+  window.localStorage.setItem("messageList", JSON.stringify(messageList));
 }
 
 function addMessage() {
-  if (messageForm.value.username === "" || messageForm.value.content === "") {
+  if (messageForm.username === "" || messageForm.content === "") {
     return;
   }
-  messageForm.value.id = messageList.value.length + 1;
-  messageForm.value.username = messageForm.value.username.trim();
-  messageForm.value.content = messageForm.value.content.trim();
-  messageForm.value.createTime = moment().format("YYYY 年 M 月 D 日 H:mm:ss");
-  messageList.value.unshift({ ...messageForm.value });
-  messageForm.value.content = "";
+  messageForm.id = messageList.length + 1;
+  messageForm.username = messageForm.username.trim();
+  messageForm.content = messageForm.content.trim();
+  messageForm.createTime = moment().format("YYYY 年 M 月 D 日 H:mm:ss");
+  messageList.unshift({ ...messageForm });
+  messageForm.content = "";
   updateStorageState();
 }
 
 function deleteMessage(id: number) {
-  for (let i = 0; i < messageList.value.length; i++) {
-    if (messageList.value[i].id === id) {
-      messageList.value[i].isShow = false;
+  for (let i = 0; i < messageList.length; i++) {
+    if (messageList[i].id === id) {
+      messageList[i].isShow = false;
     }
   }
   updateStorageState();
