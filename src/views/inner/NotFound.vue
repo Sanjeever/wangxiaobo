@@ -15,11 +15,11 @@
 
 <script setup lang="ts">
 const pageName = "未知页";
-let time = ref(5);
+let time = $ref(5);
 const router = useRouter();
 onMounted(() => {
   setInterval(() => {
-    time.value--;
+    time--;
   }, 1000);
   const canvas = document.createElement("canvas");
   canvas.style.cssText = `
@@ -58,7 +58,7 @@ onMounted(() => {
   });
 });
 
-watch(time, (newTime) => {
+watch(() => time, (newTime) => {
   if (newTime === 0) {
     document.body.removeChild(document.querySelectorAll("canvas")[0]);
     router.push("/app/index");
